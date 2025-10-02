@@ -100,8 +100,8 @@ body {
   font-size: 0.92rem;
 }
 .btn-lg {
-  padding: 14px 22px;
-  font-size: 1.05rem;
+  padding: 14px 20px;
+  font-size: 1rem;
 }
 
 /* Mobile nav toggle */
@@ -221,17 +221,17 @@ body {
   align-items: center;
   justify-content: center;
   min-width: 56px;
-  padding: 10px 12px;
+  padding: 20px 22px;
   background: #000000b0;
   border: 1px solid #ffffff22;
   border-radius: 10px;
-  font-size: 1.05rem;
+  font-size: 2.05rem;
 }
 .cd small {
   font-weight: 700;
   opacity: 0.9;
   margin-left: 6px;
-  font-size: 0.75rem;
+  font-size: 1.75rem;
 }
 
 .hero-box {
@@ -242,6 +242,7 @@ body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(4px);
 }
+ 
 .box-title {
   margin: 0 0 12px;
   font-weight: 800;
@@ -482,7 +483,7 @@ body {
 }
 
 .price {
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: 900;
   margin: 8px 0 18px;
   color: var(--orange);
