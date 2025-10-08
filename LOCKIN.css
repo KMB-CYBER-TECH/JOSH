@@ -18,7 +18,7 @@ body {
 body {
   margin: 0;
   font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
-    "Helvetica Neue", Arial;
+  "Helvetica Neue", Arial;
   color: var(--black);
   background: var(--bg);
 }
@@ -92,6 +92,7 @@ body {
   border-radius: 999px;
   cursor: pointer;
   font-weight: 700;
+  transition: background 0.3s ease;
 }
 .btn:hover {
   background: var(--orange-600);
@@ -168,7 +169,7 @@ body {
 }
 .has-bg {
   background: url("https://images.unsplash.com/photo-1554284126-aa88f22d8b74?q=80&w=1600&auto=format&fit=crop")
-    center/cover no-repeat;
+  center/cover no-repeat;
 }
 .hero-overlay {
   position: absolute;
@@ -325,7 +326,7 @@ body {
   padding: 22px;
   box-shadow: 0 8px 24px rgba(17, 17, 19, 0.06);
   transition: transform 0.25s ease, box-shadow 0.25s ease,
-    border-color 0.25s ease;
+  border-color 0.25s ease;
 }
 .cards .card:hover {
   transform: translateY(-6px);
@@ -620,6 +621,8 @@ body {
   position: relative;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   animation: fadeIn 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .modal-content h2 {
@@ -647,6 +650,7 @@ body {
   border: 1px solid #e2e6eb;
   border-radius: 10px;
   font-size: 1rem;
+  font-family: inherit;
 }
 
 .modal-content input:focus,
@@ -665,7 +669,7 @@ body {
   font-size: 1.05rem;
   font-weight: 700;
   border: none;
-  border-radius: 999px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
@@ -676,16 +680,36 @@ body {
 
 .close-btn {
   position: absolute;
-  top: 14px;
-  right: 18px;
-  font-size: 1.4rem;
-  color: var(--muted);
+  top: 16px;
+  right: 20px;
+  font-size: 1.8rem;
   cursor: pointer;
-  font-weight: 700;
+  color: #8a8f98;
+  background: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s ease;
 }
 
 .close-btn:hover {
-  color: var(--orange);
+  background: #f0f0f0;
+  color: var(--black);
+}
+
+.success-message {
+  background: #e8f7ef;
+  color: #0d6832;
+  padding: 14px;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 16px;
+  font-weight: 600;
+  border: 1px solid #b8e6cb;
 }
 
 @keyframes fadeIn {
@@ -696,5 +720,182 @@ body {
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+/* ================================
+   PAYMENT SECTIONS
+================================ */
+#paystackSection,
+#manualPaymentSection {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 10px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+}
+
+#paystackSection p,
+#manualPaymentSection p {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+#submitManual {
+  background: #6c757d;
+}
+
+#submitManual:hover {
+  background: #5a6268;
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+================================ */
+@media (max-width: 768px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .collab {
+    margin-bottom: 1rem;
+  }
+}
+
+/* ================================
+   EXTRA COST OPTIONS
+================================ */
+.extra-option {
+  margin: 16px 0;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.checkbox-label input[type="checkbox"] {
+  display: none;
+}
+
+.checkmark {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  margin-right: 12px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark {
+  background: var(--orange);
+  border-color: var(--orange);
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+  content: "✓";
+  position: absolute;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Payment Summary */
+.payment-summary {
+  background: #f8f9fa;
+  padding: 16px;
+  border-radius: 10px;
+  margin: 16px 0;
+  border: 1px solid #e9ecef;
+}
+
+.payment-summary h4 {
+  margin: 0 0 12px 0;
+  color: var(--black);
+  font-weight: 700;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  color: #49505a;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 2px solid #e9ecef;
+  font-weight: 700;
+  color: var(--black);
+  font-size: 1.1rem;
+}
+
+/* Payment Sections */
+#paystackSection,
+#manualPaymentSection {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 10px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+}
+
+#paystackSection p,
+#manualPaymentSection p {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+#submitManual {
+  background: #6c757d;
+}
+
+#submitManual:hover {
+  background: #5a6268;
+}
+
+/* Currency formatting */
+.currency {
+  font-weight: 700;
+  color: var(--orange);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .extra-option {
+    padding: 12px;
+  }
+
+  .payment-summary {
+    padding: 12px;
+  }
+
+  .summary-total {
+    font-size: 1rem;
   }
 }
