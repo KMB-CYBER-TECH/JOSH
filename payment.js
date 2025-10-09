@@ -1,6 +1,6 @@
 // Paystack Payment Integration - Naira Pricing
 // Replace with your actual Paystack public key from https://dashboard.paystack.com
-const PAYSTACK_PUBLIC_KEY = 'pk_test_your_public_key_here';
+const PAYSTACK_PUBLIC_KEY = 'pk_live_ab74bff902b672e6e983b08fe3da6c3042baa2ca';
 
 document.addEventListener('DOMContentLoaded', function() {
     const paystackButton = document.getElementById('payWithPaystack');
