@@ -1,11 +1,18 @@
 // Paystack Payment Integration - Naira Pricing
-const PAYSTACK_PUBLIC_KEY = 'pk_test_xxxxxxxxxxxx'; // Replace with your actual Paystack public key
+// Replace with your actual Paystack public key from https://dashboard.paystack.com
+const PAYSTACK_PUBLIC_KEY = 'pk_test_your_public_key_here';
 
 document.addEventListener('DOMContentLoaded', function() {
     const paystackButton = document.getElementById('payWithPaystack');
 
     if (paystackButton) {
         paystackButton.addEventListener('click', processPaystackPayment);
+    }
+
+    // Initialize Paystack
+    if (typeof PaystackPop === 'undefined') {
+        console.error('Paystack library not loaded');
+        return;
     }
 });
 
@@ -28,17 +35,26 @@ function processPaystackPayment() {
         return;
     }
 
-    // Calculate total amount
-    const baseAmount = 3000000; // ₦30,000 in kobo
+    // Calculate total amount in kobo (1 Naira = 100 kobo)
+    const baseAmount = 30000 * 100; // ₦30,000 in kobo
     let personalizedAmount = 0;
     let personalizedMonths = 0;
 
     if (document.getElementById('personalizedPlan').checked) {
         personalizedMonths = parseInt(document.getElementById('personalizedMonths').value);
-        personalizedAmount = personalizedMonths * 1000000; // ₦10,000 per month in kobo
+        personalizedAmount = personalizedMonths * 10000 * 100; // ₦10,000 per month in kobo
     }
 
     const totalAmount = baseAmount + personalizedAmount;
+
+    // Validate Paystack key
+    if (!PAYSTACK_PUBLIC_KEY || PAYSTACK_PUBLIC_KEY === 'pk_test_your_public_key_here') {
+        alert('Payment system is not properly configured. Please contact support.');
+        console.error('Paystack public key not configured');
+        return;
+    }
+
+    console.log('Initiating Paystack payment for:', email, 'Amount:', totalAmount);
 
     // Create payment handler
     const handler = PaystackPop.setup({
@@ -73,6 +89,7 @@ function processPaystackPayment() {
         },
         callback: function(response) {
             // Payment successful
+            console.log('Paystack callback received:', response);
             handlePaymentSuccess(response, {
                 name: name,
                 email: email,
@@ -139,6 +156,7 @@ function handlePaymentSuccess(response, formData) {
         if (personalizedMonths > 0) {
             detailsText += ` (Includes ${personalizedMonths} month${personalizedMonths > 1 ? 's' : ''} personalized plan)`;
         }
+        detailsText += `\nReference: ${response.reference}`;
         successDetails.textContent = detailsText;
 
         // Show success modal
@@ -146,6 +164,8 @@ function handlePaymentSuccess(response, formData) {
 
         // Reset form
         document.getElementById('enrollForm').reset();
+        document.getElementById('personalizedOptions').style.display = 'none';
+        document.getElementById('personalizedPlan').checked = false;
 
         console.log('Enrollment saved successfully. Reference:', response.reference);
 
@@ -154,77 +174,6 @@ function handlePaymentSuccess(response, formData) {
         alert('Payment successful but there was an error saving your details. Please contact us with your payment reference: ' + response.reference);
     }
 }
-
-// Manual payment submission
-document.addEventListener('DOMContentLoaded', function() {
-    const manualSubmit = document.getElementById('submitManual');
-    if (manualSubmit) {
-        manualSubmit.addEventListener('click', function(e) {
-            e.preventDefault();
-
-            const form = document.getElementById('enrollForm');
-            const name = form.name.value.trim();
-            const email = form.email.value.trim();
-            const phone = form.phone.value.trim();
-
-            if (!name || !email || !phone) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-
-            // Calculate amounts
-            const baseAmount = 30000;
-            let personalizedAmount = 0;
-            let personalizedMonths = 0;
-
-            if (document.getElementById('personalizedPlan').checked) {
-                personalizedMonths = parseInt(document.getElementById('personalizedMonths').value);
-                personalizedAmount = personalizedMonths * 10000;
-            }
-
-            const totalAmount = baseAmount + personalizedAmount;
-
-            // Save manual payment enrollment
-            try {
-                const enrollmentData = {
-                    name: name,
-                    email: email,
-                    phone: phone,
-                    weight: form.weight.value,
-                    goal: form.goal.value,
-                    plan: form.plan.value,
-                    personalized_plan: document.getElementById('personalizedPlan').checked ? "yes" : "no",
-                    personalized_months: personalizedMonths.toString(),
-                    base_amount: baseAmount,
-                    personalized_amount: personalizedAmount,
-                    total_amount: totalAmount,
-                    payment_method: 'manual',
-                    payment_status: 'pending',
-                    submittedAt: new Date().toISOString(),
-                    program: 'LOSE IT 12-Week Weight Loss'
-                };
-
-                const enrollments = JSON.parse(localStorage.getItem("enrollments")) || [];
-                enrollments.push(enrollmentData);
-                localStorage.setItem("enrollments", JSON.stringify(enrollments));
-
-                // Show success message
-                document.getElementById('successMessage').style.display = 'block';
-                form.reset();
-
-                // Auto-close after 3 seconds
-                setTimeout(() => {
-                    document.getElementById('successMessage').style.display = 'none';
-                    document.getElementById('enrollModal').style.display = 'none';
-                }, 3000);
-
-            } catch (error) {
-                console.error('Error saving manual enrollment:', error);
-                alert('There was an error submitting your enrollment. Please try again.');
-            }
-        });
-    }
-});
 
 // ===== UTILITY FUNCTIONS =====
 
@@ -238,7 +187,8 @@ function viewEnrollments() {
     let message = `Total Enrollments: ${enrollments.length}\n\n`;
     enrollments.forEach((enroll, index) => {
         const amount = enroll.total_amount ? `₦${parseInt(enroll.total_amount).toLocaleString()}` : 'N/A';
-        message += `${index + 1}. ${enroll.name} - ${enroll.email} - ${amount} - ${enroll.payment_status}\n`;
+        const status = enroll.payment_status || 'unknown';
+        message += `${index + 1}. ${enroll.name} - ${enroll.email} - ${amount} - ${status}\n`;
     });
     alert(message);
 
@@ -280,3 +230,22 @@ function checkNewPaidEnrollments() {
 
     return paidEnrollments;
 }
+
+// Test Paystack integration
+function testPaystack() {
+    if (typeof PaystackPop === 'undefined') {
+        console.error('Paystack library not loaded');
+        return false;
+    }
+    if (!PAYSTACK_PUBLIC_KEY || PAYSTACK_PUBLIC_KEY === 'pk_test_your_public_key_here') {
+        console.error('Paystack public key not configured');
+        return false;
+    }
+    console.log('Paystack integration test: OK');
+    return true;
+}
+
+// Initialize test on load
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Paystack integration test:', testPaystack() ? 'PASS' : 'FAIL');
+});
