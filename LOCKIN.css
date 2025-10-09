@@ -44,10 +44,10 @@ body {
 }
 
 /* Header / Navbar */
-
 .site-header {
-  position: fi;
+  position: fixed;
   top: 0;
+  width: 100%;
   z-index: 50;
   backdrop-filter: saturate(140%) blur(8px);
   background: rgba(255, 255, 255, 0.75);
@@ -153,6 +153,7 @@ body {
 }
 
 /* Hero */
+<<<<<<< HEAD
 /* ===== Hero Touch-ups ===== */
 .hero {
   position: relative;
@@ -490,6 +491,8 @@ body {
   text-align: center;
 }
 
+=======
+>>>>>>> 5900a6dfd8abc0157c85abdaa22334e1e9f61232
 .hero {
   position: relative;
   color: #fff;
@@ -1229,30 +1232,6 @@ body {
   font-size: 1.1rem;
 }
 
-/* Payment Sections */
-#paystackSection,
-#manualPaymentSection {
-  margin-top: 16px;
-  padding: 16px;
-  border-radius: 10px;
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
-}
-
-#paystackSection p,
-#manualPaymentSection p {
-  margin-bottom: 16px;
-  text-align: center;
-}
-
-#submitManual {
-  background: #6c757d;
-}
-
-#submitManual:hover {
-  background: #5a6268;
-}
-
 /* Currency formatting */
 .currency {
   font-weight: 700;
@@ -1273,6 +1252,7 @@ body {
     font-size: 1rem;
   }
 }
+<<<<<<< HEAD
 .weight-input-group {
   display: flex;
   align-items: center;
@@ -1295,3 +1275,10 @@ body {
   cursor: pointer;
   font-weight: 500;
 }
+=======
+
+/* Fix for body padding when header is fixed */
+body {
+  padding-top: 64px;
+}
+>>>>>>> 5900a6dfd8abc0157c85abdaa22334e1e9f61232

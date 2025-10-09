@@ -39,49 +39,55 @@
   </nav>
 </header>
 
-   <!-- HERO -->
-<section id="home" class="hero section has-bg">
-  <div class="hero-overlay"></div>
-  <div class="container hero-content">
-    <h1 class="headline">LOSE WEIGHT WITHOUT LOSING YOUR LIFESTYLE</h1>
-    <p class="subtext">
-      Built for real life: Flexible, sustainable, and designed to fit your lifestyle
-      while delivering real, lasting results.
-    </p>
+    <!-- HERO -->
+    <section id="home" class="hero section has-bg">
+      <div class="hero-overlay"></div>
+      <div class="container grid-2 hero-grid">
+        <!-- Left: Headline + subtext + timer -->
+        <div class="hero-left reveal">
+          <h1 class="headline">LOSE WEIGHT WITHOUT LOSING YOUR LIFESTYLE</h1>
+          <p class="subtext">
+            Built for real life: Flexible, sustainable, and designed to fit your
+            lifestyle while delivering real, lasting results.
+          </p>
+          <br>
 
-    <!-- Get Started Button -->
-    <a href="login.html" class="btn btn-lg get-started-btn">Get Started</a>
-  </div>
-</section>
+         
+         
 
-<!-- SEPARATE TRANSFORMATION SECTION -->
-<section id="transformation" class="section transformation-section section-dark">
-  <div class="container narrow reveal">
-    <aside class="hero-box" aria-label="Start Your Transformation">
-      <h3 class="box-title">Start Your Transformation Now</h3>
-      <ul class="box-list">
-        <li>Lose up to 35lbs within the 12-week weight loss program</li>
-        <li>Nutrition that fits your lifestyle</li>
-        <li>Mindset and habit support / Accountability</li>
-        <li>Designed for Beginners and Adaptable for all levels</li>
-        <li>Home-Ready workouts or Gym Workout Guides following your preferences</li>
-      </ul>
+       
+        <aside
+          class="hero-box reveal delay-1"
+          aria-label="Start Your Transformation"
+        >
+          <h3 class="box-title">Start Your Transformation Now</h3>
+          <ul class="box-list">
+            <li>Lose up to 30lbs within the 12-week weight loss program</li>
+            <li>Nutrition that fits your lifestyle</li>
+            <li>Mindset and habit support / Accountability</li>
+            <li>Designed for Beginners and Adaptable for all levels</li>
+            <li>
+              Home-Ready workouts or Gym Workout Guides following your
+              preferences
+            </li>
+          </ul>
+          <p class="after-line">
+            AFTER LOSE IT!!!, the only pounds you'll be adding are £ not
+            <span class="strike">lbs</span>
+          </p>
+        </aside>
+        
+      </div>
+      
 
-      <!-- Fixed version of the after-line -->
-      <p class="after-line-static">
-        AFTER LOSE IT!!!, the only pounds you'll be adding are £ not 
-        <span class="strike">lbs</span>
-      </p>
-    </aside>
-  </div>
-</section>
+    </section>
 
     <!-- ABOUT -->
     <section id="about" class="section section-light">
       <div class="container narrow">
         <h2 class="section-title reveal">About Us</h2>
         <p class="section-lead reveal delay-1">
-         We help working class individuals with busy schedules achieve their weight loss and fitness goals through our tried and tested approach to health and fitness... LOSE IT!!! is built around your
+          We help real people make real progress. LOSE IT is built around your
           lifestyle—so you can keep living while you’re transforming. With
           flexible nutrition, scalable workouts, and mindset support, you get
           results that last beyond the 12 weeks.
@@ -94,7 +100,6 @@
   <div class="container narrow">
     <div class="countdown-title">Enroll now; Starts 1st October.</div><br>
     <div id="countdown" class="countdown"></div>
-  </div>
   </div>
 </section>
 
@@ -211,38 +216,34 @@
   </div>
 </section>
 
+<!-- PRICING SECTION -->
+<section id="pricing" class="section section-dark">
+  <div class="container narrow">
+    <h2 class="section-title reveal">Simple, One-Time Payment</h2>
 
-    <section id="pricing" class="section section-dark">
-      <div class="container narrow">
-        <h2 class="section-title reveal">Simple, One-Time Payment</h2>
+    <p class="price reveal">
+      <span class="old-price">₦50,000</span> ₦30,000 <br />
+    </p>
 
-        <p class="price reveal">
-          <span class="old-price">£50</span> £30 <br />
-        </p>
+    <p class="muted reveal">
+      Enroll before the deadline to lock in the discount. No subscriptions.
+      No hidden fees. Just results.
+    </p>
 
-        <p class="muted reveal">
-          Enroll before the deadline to lock in the discount. No subscriptions.
-          No hidden fees. Just results.
-        </p>
+    <div class="pricing-cards">
+      <div class="card reveal delay-1">
+        <h3>Personalised Workout Plan</h3><br>
+        <p>Get a tailored plan designed specifically for you.</p>
+        <p class="price">+ Extra Cost: ₦10,000 per Month</p>
+      </div>
+    </div>
 
-        <div class="pricing-cards">
-          <div class="card reveal delay-1">
-            <h3>Personalised Workout Plan</h3><br>
-            <p>Get a tailored plan designed specifically for you.</p>
-            <p class="price">+ Extra Cost (£10 per Month)</p>
-          </div>
-        </div>
+    <p class="muted reveal delay-2">
+      After payment, you'll be added to our exclusive WhatsApp community for
+      support, accountability, and motivation.
+    </p>
 
-        <p class="muted reveal delay-2">
-          After payment, you’ll be added to our exclusive WhatsApp community for
-          support, accountability, and motivation.
-        </p>
-
-        <div
-          id="countdown-bottom"
-          class="countdown in-dark reveal"
-          aria-live="polite"
-        ></div>
+    <div id="countdown-bottom" class="countdown in-dark reveal" aria-live="polite"></div>
 
         <button
           id="enrollBtn"
@@ -252,9 +253,10 @@
         >
           Enroll Now
         </button>
-       <!-- Animated Slider (professional + smooth) -->
-
-
+        <p class="after-line">
+          AFTER LOSE IT!!!, the only pounds you'll be adding are £ not
+          <span class="strike">lbs</span>
+        </p>
       </div>
     </section>
 
@@ -277,36 +279,18 @@
               placeholder="Phone Number"
               required
       />
-    <!-- Current Weight -->
-<div class="weight-input-group">
-  <input
-    type="number"
-    name="weight"
-    id="weight"
-    placeholder="Current Weight"
-    required
-  />
-  <select name="weightUnit" id="weightUnit" required>
-    <option value="kg">kg</option>
-    <option value="lbs">lbs</option>
-  </select>
-</div>
-
-<!-- Goal Weight -->
-<div class="weight-input-group">
-  <input
-    type="number"
-    name="goal"
-    id="goal"
-    placeholder="Goal Weight"
-    required
-  />
-  <select name="goalUnit" id="goalUnit" required>
-    <option value="kg">kg</option>
-    <option value="lbs">lbs</option>
-  </select>
-</div>
-
+      <input
+              type="number"
+              name="weight"
+              placeholder="Current Weight (kg)"
+              required
+      />
+      <input
+              type="number"
+              name="goal"
+              placeholder="Goal Weight (kg)"
+              required
+      />
 
       <select name="plan" required>
         <option value="">Preferred Workout Type</option>
@@ -363,7 +347,7 @@
 
       <div id="manualPaymentSection" style="display: none;">
         <p class="muted">For manual payment options, please contact us directly at kmbbassey@gmail.com</p>
-        <button type="submit" id="submitManual">
+        <button type="button" id="submitManual">
           Submit Enrollment (Manual Payment)
         </button>
       </div>
@@ -427,16 +411,8 @@
     });
   });
 
-  // ===== Countdown to LAST SUNDAY OF OCTOBER =====
-  function getLastSundayOfOctober() {
-    const year = new Date().getFullYear();
-    const d = new Date(year, 9, 31); // October 31
-    while (d.getDay() !== 0) d.setDate(d.getDate() - 1); // move back until Sunday
-    d.setHours(23, 59, 59, 999);
-    return d.getTime();
-  }
-
-  const targetDate = getLastSundayOfOctober();
+    
+      const targetDate = new Date("September 25, 2025 23:59:59").getTime();
 
   function runCountdown(id) {
     const el = document.getElementById(id);
@@ -482,16 +458,12 @@
   // ===== Year in footer =====
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  // ===== Modal (Enroll Now) =====
-  const modal = document.getElementById("enrollModal");
-  const openBtn = document.getElementById("enrollBtn");
-  const closeBtn = document.getElementById("closeModal");
-  const form = document.getElementById("enrollForm");
-  const successMessage = document.getElementById("successMessage");
-  const paystackSection = document.getElementById("paystackSection");
-  const manualPaymentSection = document.getElementById("manualPaymentSection");
-  const paymentSummary = document.getElementById("paymentSummary");
-  const personalizedOptions = document.getElementById("personalizedOptions");
+      // ===== Modal (Enroll Now) =====
+      const modal = document.getElementById("enrollModal");
+      const openBtn = document.getElementById("enrollBtn");
+      const closeBtn = document.getElementById("closeModal");
+      const form = document.getElementById("enrollForm");
+      const successMessage = document.getElementById("successMessage");
 
   // Open enroll modal from "Enroll Now" button
   openBtn.onclick = () => {
@@ -502,15 +474,8 @@
     manualPaymentSection.style.display = "none";
     paymentSummary.style.display = "none";
     personalizedOptions.style.display = "none";
+    personalizedPlan.checked = false;
   };
-
-  // 🟢 Open modal when "Get Started" is clicked (top button)
-  const getStartedBtn = document.querySelector(".get-started-btn");
-  getStartedBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    modal.style.display = "flex";
-  });
-
   closeBtn.onclick = () => (modal.style.display = "none");
   window.onclick = (e) => {
     if (e.target === modal) modal.style.display = "none";
@@ -521,36 +486,41 @@
     document.getElementById("paymentSuccessModal").style.display = "none";
   };
 
-  // ===== Save form data to localStorage + success message =====
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    try {
-      const formData = {
-        name: form.name.value.trim(),
-        email: form.email.value.trim(),
-        weight: form.weight.value,
-        goal: form.goal.value,
-        plan: form.plan.value,
-        payment: form.payment.value,
-        submittedAt: new Date().toISOString(),
-      };
+      // ===== Save form data to localStorage + success message =====
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-      const enrollments =
-        JSON.parse(localStorage.getItem("enrollments")) || [];
-      enrollments.push(formData);
-      localStorage.setItem("enrollments", JSON.stringify(enrollments));
+        try {
+          // Collect form data safely
+          const formData = {
+            name: form.name.value.trim(),
+            email: form.email.value.trim(),
+            weight: form.weight.value,
+            goal: form.goal.value,
+            plan: form.plan.value,
+            payment: form.payment.value,
+            submittedAt: new Date().toISOString(),
+          };
 
-      successMessage.style.display = "block";
-      form.reset();
-      setTimeout(() => {
-        successMessage.style.display = "none";
-        modal.style.display = "none";
-      }, 3000);
-    } catch (err) {
-      console.error("Enrollment error:", err);
-    }
-  });
-</script>
+          // Save to localStorage
+          const enrollments =
+            JSON.parse(localStorage.getItem("enrollments")) || [];
+          enrollments.push(formData);
+          localStorage.setItem("enrollments", JSON.stringify(enrollments));
 
+          // Visual feedback
+          successMessage.style.display = "block";
+          form.reset();
+
+          // Auto-close after 3 seconds
+          setTimeout(() => {
+            successMessage.style.display = "none";
+            modal.style.display = "none";
+          }, 3000);
+        } catch (err) {
+          console.error("Enrollment error:", err);
+        }
+      });
+    </script>
   </body>
 </html>
