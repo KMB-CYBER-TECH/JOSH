@@ -21,6 +21,7 @@ body {
   "Helvetica Neue", Arial;
   color: var(--black);
   background: var(--bg);
+  padding-top: 64px;
 }
 
 /* Layout */
@@ -274,7 +275,29 @@ body {
 .after-line {
   color: #f5f6f8;
   font-weight: 700;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+  position: relative;
 }
+
+.after-line span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: slideLoop 10s linear infinite;
+}
+
+@keyframes slideLoop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 .strike {
   text-decoration: none;
   color: #ffb08a;
@@ -397,6 +420,14 @@ body {
   text-align: center;
 }
 
+.old-price {
+  text-decoration: line-through;
+  color: var(--muted);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-right: 8px;
+}
+
 /* Footer */
 .site-footer {
   background: #0f1012;
@@ -447,7 +478,7 @@ body {
   font-size: 0.95rem;
   font-weight: 500;
   margin-bottom: 0.5rem;
-  color: var(--light); /* or black depending on background */
+  color: var(--light);
 }
 
 .collab-logo {
@@ -455,138 +486,9 @@ body {
   height: auto;
   display: inline-block;
 }
-/* ================================
-   PRICING SECTION
-================================ */
-#pricing .btn {
-  display: block;
-  margin: 20px auto; /* centers horizontally */
-  text-align: center;
-}
-
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
-  width: min(1100px, 92%);
-  margin-inline: auto;
-}
-
-.pricing-card {
-  background: var(--card);
-  border: 1px solid #e9ecf2;
-  border-radius: 16px;
-  padding: 28px 22px;
-  box-shadow: 0 8px 24px rgba(17, 17, 19, 0.06);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.pricing-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 32px rgba(17, 17, 19, 0.1);
-}
-
-.pricing-card h3 {
-  font-size: 1.3rem;
-  font-weight: 800;
-  margin: 0 0 12px;
-  color: var(--black);
-}
-
-.price {
-  font-size: 1rem;
-  font-weight: 900;
-  margin: 8px 0 18px;
-  color: var(--orange);
-}
-
-.payment-methods {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  margin: 14px 0;
-}
-
-.payment-methods span {
-  background: #fff3e8;
-  border: 1px solid #ffe3cc;
-  color: var(--orange);
-  font-weight: 600;
-  font-size: 0.9rem;
-  padding: 6px 12px;
-  border-radius: 999px;
-}
-.old-price {
-  text-decoration: line-through;
-  color: #c9cdd4;
-  font-weight: 600;
-  margin-right: 8px;
-  font-size: 1.3rem;
-}
 
 /* ================================
-   ENROLL CALL TO ACTION
-================================ */
-.after-line {
-  color: #f5f6f8;
-  font-weight: 700;
-  text-align: center;
-  overflow: hidden;
-  white-space: nowrap;
-  display: block;
-  width: 100%; /* full width */
-  position: relative;
-}
-
-.after-line span {
-  display: inline-block;
-  padding-left: 100%; /* start off-screen */
-  animation: slideLoop 10s linear infinite;
-}
-
-@keyframes slideLoop {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-.enroll-cta {
-  text-align: center;
-  margin-top: 32px;
-}
-
-.enroll-cta p {
-  font-size: 1rem;
-  margin-bottom: 12px;
-  color: #444;
-}
-
-.enroll-btn {
-  background: var(--orange);
-  color: #fff;
-  font-size: 1.1rem;
-  font-weight: 700;
-  border: none;
-  border-radius: 999px;
-  padding: 14px 28px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.enroll-btn:hover {
-  background: var(--orange-600);
-}
-
-/* ================================
-   ENROLLMENT POPUP MODAL
+   MODAL STYLES
 ================================ */
 .modal {
   display: none;
@@ -740,30 +642,6 @@ body {
 }
 
 /* ================================
-   RESPONSIVE DESIGN
-================================ */
-@media (max-width: 768px) {
-  .pricing-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .modal-content {
-    padding: 20px;
-    margin: 10px;
-  }
-
-  .footer-inner {
-    flex-direction: column;
-    gap: 16px;
-    text-align: center;
-  }
-
-  .collab {
-    margin-bottom: 1rem;
-  }
-}
-
-/* ================================
    EXTRA COST OPTIONS
 ================================ */
 .extra-option {
@@ -853,6 +731,25 @@ body {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .collab {
+    margin-bottom: 1rem;
+  }
+
   .extra-option {
     padding: 12px;
   }
@@ -864,9 +761,4 @@ body {
   .summary-total {
     font-size: 1rem;
   }
-}
-
-/* Fix for body padding when header is fixed */
-body {
-  padding-top: 64px;
 }

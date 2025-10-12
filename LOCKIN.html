@@ -213,7 +213,7 @@
     <h2 class="section-title reveal">Simple, One-Time Payment</h2>
 
     <p class="price reveal">
-      <span class="old-price">₦50,000</span> ₦30,000 <br />
+      <span class="old-price">₦50,000 / $65</span> ₦30,000 / $38 <br />
     </p>
 
     <p class="muted reveal">
@@ -225,7 +225,7 @@
       <div class="card reveal delay-1">
         <h3>Personalised Workout Plan</h3><br>
         <p>Get a tailored plan designed specifically for you.</p>
-        <p class="price">+ Extra Cost: ₦10,000 per Month</p>
+        <p class="price">+ Extra Cost: ₦10,000 / $13 per Month</p>
       </div>
     </div>
 
@@ -269,21 +269,23 @@
         <label class="checkbox-label">
           <input type="checkbox" name="personalized_plan" id="personalizedPlan" value="yes">
           <span class="checkmark"></span>
-          Add Personalized Workout Plan (+₦10,000 per month)
+          Add Personalized Workout Plan (+₦10,000/$13 per month)
         </label>
         <div id="personalizedOptions" style="display: none; margin-top: 10px;">
           <select name="personalized_months" id="personalizedMonths">
-            <option value="1">1 Month (₦10,000)</option>
-            <option value="2">2 Months (₦20,000)</option>
-            <option value="3">3 Months (₦30,000)</option>
+            <option value="1">1 Month (₦10,000 / $13)</option>
+            <option value="2">2 Months (₦20,000 / $26)</option>
+            <option value="3">3 Months (₦30,000 / $39)</option>
           </select>
         </div>
       </div>
 
-      <select name="payment" id="paymentMethod" required>
-        <option value="">Payment Method</option>
-        <option value="paystack">Paystack (Card/Bank Transfer)</option>
-        <option value="manual">Manual Payment</option>
+      <!-- Currency Selection -->
+      <select name="currency" id="currencySelect" required>
+        <option value="">Select Currency</option>
+        <option value="NGN">Naira (₦) - Recommended for Nigeria</option>
+        <option value="USD">US Dollars ($) - International</option>
+        <option value="manual">Manual Payment (Contact Us)</option>
       </select>
 
       <!-- Payment Summary -->
@@ -291,7 +293,7 @@
         <h4>Payment Summary</h4>
         <div class="summary-line">
           <span>Program Fee:</span>
-          <span>₦30,000</span>
+          <span id="baseAmountDisplay">₦30,000</span>
         </div>
         <div class="summary-line" id="personalizedSummary" style="display: none;">
           <span>Personalized Plan:</span>
@@ -355,17 +357,21 @@
   // ===== Mobile nav toggle =====
   const navToggle = document.querySelector(".nav-toggle");
   const navLinks = document.querySelector(".nav-links");
-  navToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("open");
-    navToggle.classList.toggle("open");
-  });
-  document.querySelectorAll(".nav-links a").forEach((a) => {
-    a.addEventListener("click", () => {
-      navLinks.classList.remove("open");
-      navToggle.classList.remove("open");
+  if (navToggle && navLinks) {
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+      navToggle.classList.toggle("open");
     });
-  });
 
+    document.querySelectorAll(".nav-links a").forEach((a) => {
+      a.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        navToggle.classList.remove("open");
+      });
+    });
+  }
+
+  // Smooth scrolling
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       const target = document.querySelector(this.getAttribute("href"));
@@ -380,6 +386,8 @@
 
   function runCountdown(id) {
     const el = document.getElementById(id);
+    if (!el) return;
+
     function tick() {
       const now = Date.now();
       const dist = targetDate - now;
@@ -403,9 +411,16 @@
     tick();
     setInterval(tick, 1000);
   }
-  runCountdown("countdown");
-  runCountdown("countdown-bottom");
 
+  // Initialize countdowns
+  if (document.getElementById("countdown")) {
+    runCountdown("countdown");
+  }
+  if (document.getElementById("countdown-bottom")) {
+    runCountdown("countdown-bottom");
+  }
+
+  // ===== Scroll reveal animations =====
   const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
@@ -414,10 +429,14 @@
           },
           { threshold: 0.12 }
   );
+
   document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
   // ===== Year in footer =====
-  document.getElementById("year").textContent = new Date().getFullYear();
+  const yearElement = document.getElementById("year");
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
 
   // ===== Modal (Enroll Now) =====
   const modal = document.getElementById("enrollModal");
@@ -425,7 +444,7 @@
   const closeBtn = document.getElementById("closeModal");
   const form = document.getElementById("enrollForm");
   const successMessage = document.getElementById("successMessage");
-  const paymentMethod = document.getElementById("paymentMethod");
+  const paymentMethod = document.getElementById("currencySelect");
   const paystackSection = document.getElementById("paystackSection");
   const manualPaymentSection = document.getElementById("manualPaymentSection");
   const personalizedPlan = document.getElementById("personalizedPlan");
@@ -434,129 +453,194 @@
   const paymentSummary = document.getElementById("paymentSummary");
 
   // Personalized plan toggle
-  personalizedPlan.addEventListener("change", function() {
-    personalizedOptions.style.display = this.checked ? "block" : "none";
-    updatePaymentSummary();
-  });
+  if (personalizedPlan) {
+    personalizedPlan.addEventListener("change", function() {
+      if (personalizedOptions) {
+        personalizedOptions.style.display = this.checked ? "block" : "none";
+      }
+      updatePaymentSummary();
+    });
+  }
 
   // Months selection change
-  personalizedMonths.addEventListener("change", updatePaymentSummary);
+  if (personalizedMonths) {
+    personalizedMonths.addEventListener("change", updatePaymentSummary);
+  }
 
-  // Payment method toggle
-  paymentMethod.addEventListener("change", function() {
-    paystackSection.style.display = this.value === "paystack" ? "block" : "none";
-    manualPaymentSection.style.display = this.value === "manual" ? "block" : "none";
-    paymentSummary.style.display = "block";
-    updatePaymentSummary();
-  });
+  // Currency selection handler
+  if (paymentMethod) {
+    paymentMethod.addEventListener("change", function() {
+      const currency = this.value;
+      if (paystackSection) {
+        paystackSection.style.display = (currency === 'NGN' || currency === 'USD') ? "block" : "none";
+      }
+      if (manualPaymentSection) {
+        manualPaymentSection.style.display = currency === "manual" ? "block" : "none";
+      }
+      if (paymentSummary) {
+        paymentSummary.style.display = currency ? "block" : "none";
+      }
+      updatePaymentSummary();
+    });
+  }
 
   // Update payment summary
   function updatePaymentSummary() {
-    const baseAmount = 30000; // ₦30,000
+    const currencySelect = document.getElementById("currencySelect");
+    if (!currencySelect) return;
+
+    const currency = currencySelect.value;
+    const baseAmount = currency === 'USD' ? 38 : 30000;
+    const personalizedRate = currency === 'USD' ? 13 : 10000;
+    const symbol = currency === 'USD' ? '$' : '₦';
+
     let personalizedAmount = 0;
 
-    if (personalizedPlan.checked) {
-      const months = parseInt(personalizedMonths.value);
-      personalizedAmount = months * 10000; // ₦10,000 per month
+    if (personalizedPlan && personalizedPlan.checked) {
+      const months = personalizedMonths ? parseInt(personalizedMonths.value) : 1;
+      personalizedAmount = months * personalizedRate;
     }
 
     const totalAmount = baseAmount + personalizedAmount;
 
+    // Format amount display
+    const formatAmount = (amount, curr) => {
+      if (curr === 'NGN') {
+        return `₦${amount.toLocaleString()}`;
+      } else {
+        return `$${amount}`;
+      }
+    };
+
     // Update summary display
-    document.getElementById("personalizedSummary").style.display = personalizedPlan.checked ? "flex" : "none";
-    document.getElementById("personalizedAmount").textContent = `₦${personalizedAmount.toLocaleString()}`;
-    document.getElementById("totalAmount").textContent = `₦${totalAmount.toLocaleString()}`;
-    document.getElementById("paystackAmount").textContent = `₦${totalAmount.toLocaleString()}`;
+    if (document.getElementById("personalizedSummary")) {
+      document.getElementById("personalizedSummary").style.display = (personalizedPlan && personalizedPlan.checked) ? "flex" : "none";
+    }
+    if (document.getElementById("personalizedAmount")) {
+      document.getElementById("personalizedAmount").textContent = formatAmount(personalizedAmount, currency);
+    }
+    if (document.getElementById("baseAmountDisplay")) {
+      document.getElementById("baseAmountDisplay").textContent = formatAmount(baseAmount, currency);
+    }
+    if (document.getElementById("totalAmount")) {
+      document.getElementById("totalAmount").textContent = formatAmount(totalAmount, currency);
+    }
+    if (document.getElementById("paystackAmount")) {
+      document.getElementById("paystackAmount").textContent = formatAmount(totalAmount, currency);
+    }
   }
 
   // Reset success message each time modal opens
-  openBtn.onclick = () => {
-    successMessage.style.display = "none";
-    modal.style.display = "flex";
-    form.reset();
-    paystackSection.style.display = "none";
-    manualPaymentSection.style.display = "none";
-    paymentSummary.style.display = "none";
-    personalizedOptions.style.display = "none";
-    personalizedPlan.checked = false;
-  };
+  if (openBtn && modal) {
+    openBtn.onclick = () => {
+      if (successMessage) successMessage.style.display = "none";
+      modal.style.display = "flex";
+      if (form) form.reset();
+      if (paystackSection) paystackSection.style.display = "none";
+      if (manualPaymentSection) manualPaymentSection.style.display = "none";
+      if (paymentSummary) paymentSummary.style.display = "none";
+      if (personalizedOptions) personalizedOptions.style.display = "none";
+      if (personalizedPlan) personalizedPlan.checked = false;
+    };
+  }
 
-  closeBtn.onclick = () => (modal.style.display = "none");
-  window.onclick = (e) => {
-    if (e.target === modal) modal.style.display = "none";
-  };
+  // Close modal handlers
+  if (closeBtn && modal) {
+    closeBtn.onclick = () => (modal.style.display = "none");
+  }
+
+  if (modal) {
+    window.onclick = (e) => {
+      if (e.target === modal) modal.style.display = "none";
+    };
+  }
 
   // Close success modal
-  document.getElementById("closeSuccessModal").onclick = () => {
-    document.getElementById("paymentSuccessModal").style.display = "none";
-  };
+  const closeSuccessModal = document.getElementById("closeSuccessModal");
+  const paymentSuccessModal = document.getElementById("paymentSuccessModal");
+
+  if (closeSuccessModal && paymentSuccessModal) {
+    closeSuccessModal.onclick = () => {
+      paymentSuccessModal.style.display = "none";
+    };
+  }
 
   // Manual payment submission
-  document.getElementById("submitManual").addEventListener("click", function(e) {
-    e.preventDefault();
+  const submitManual = document.getElementById("submitManual");
+  if (submitManual) {
+    submitManual.addEventListener("click", function(e) {
+      e.preventDefault();
 
-    const name = form.name.value.trim();
-    const email = form.email.value.trim();
-    const phone = form.phone.value.trim();
+      if (!form) return;
 
-    if (!name || !email || !phone) {
-      alert('Please fill in all required fields.');
-      return;
-    }
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const phone = form.phone.value.trim();
 
-    // Calculate amounts
-    const baseAmount = 30000;
-    let personalizedAmount = 0;
-    let personalizedMonths = 0;
+      if (!name || !email || !phone) {
+        alert('Please fill in all required fields.');
+        return;
+      }
 
-    if (document.getElementById('personalizedPlan').checked) {
-      personalizedMonths = parseInt(document.getElementById('personalizedMonths').value);
-      personalizedAmount = personalizedMonths * 10000;
-    }
+      // Calculate amounts
+      const currency = document.getElementById('currencySelect').value;
+      const baseAmount = currency === 'USD' ? 38 : 30000;
+      const personalizedRate = currency === 'USD' ? 13 : 10000;
+      let personalizedAmount = 0;
+      let personalizedMonthsValue = 0;
 
-    const totalAmount = baseAmount + personalizedAmount;
+      if (document.getElementById('personalizedPlan').checked) {
+        personalizedMonthsValue = parseInt(document.getElementById('personalizedMonths').value);
+        personalizedAmount = personalizedMonthsValue * personalizedRate;
+      }
 
-    // Save manual payment enrollment
-    try {
-      const enrollmentData = {
-        name: name,
-        email: email,
-        phone: phone,
-        weight: form.weight.value,
-        goal: form.goal.value,
-        plan: form.plan.value,
-        personalized_plan: document.getElementById('personalizedPlan').checked ? "yes" : "no",
-        personalized_months: personalizedMonths.toString(),
-        base_amount: baseAmount,
-        personalized_amount: personalizedAmount,
-        total_amount: totalAmount,
-        payment_method: 'manual',
-        payment_status: 'pending',
-        submittedAt: new Date().toISOString(),
-        program: 'LOSE IT 12-Week Weight Loss'
-      };
+      const totalAmount = baseAmount + personalizedAmount;
 
-      const enrollments = JSON.parse(localStorage.getItem("enrollments")) || [];
-      enrollments.push(enrollmentData);
-      localStorage.setItem("enrollments", JSON.stringify(enrollments));
+      // Save manual payment enrollment
+      try {
+        const enrollmentData = {
+          name: name,
+          email: email,
+          phone: phone,
+          weight: form.weight.value,
+          goal: form.goal.value,
+          plan: form.plan.value,
+          personalized_plan: document.getElementById('personalizedPlan').checked ? "yes" : "no",
+          personalized_months: personalizedMonthsValue.toString(),
+          base_amount: baseAmount,
+          personalized_amount: personalizedAmount,
+          total_amount: totalAmount,
+          currency: currency,
+          payment_method: 'manual',
+          payment_status: 'pending',
+          submittedAt: new Date().toISOString(),
+          program: 'LOSE IT 12-Week Weight Loss'
+        };
 
-      // Show success message
-      successMessage.style.display = 'block';
-      form.reset();
-      personalizedOptions.style.display = "none";
-      personalizedPlan.checked = false;
+        const enrollments = JSON.parse(localStorage.getItem("enrollments")) || [];
+        enrollments.push(enrollmentData);
+        localStorage.setItem("enrollments", JSON.stringify(enrollments));
 
-      // Auto-close after 3 seconds
-      setTimeout(() => {
-        successMessage.style.display = 'none';
-        modal.style.display = 'none';
-      }, 3000);
+        // Show success message
+        if (successMessage) {
+          successMessage.style.display = 'block';
+        }
+        if (form) form.reset();
+        if (personalizedOptions) personalizedOptions.style.display = "none";
+        if (personalizedPlan) personalizedPlan.checked = false;
 
-    } catch (error) {
-      console.error('Error saving manual enrollment:', error);
-      alert('There was an error submitting your enrollment. Please try again.');
-    }
-  });
+        // Auto-close after 3 seconds
+        setTimeout(() => {
+          if (successMessage) successMessage.style.display = 'none';
+          if (modal) modal.style.display = 'none';
+        }, 3000);
+
+      } catch (error) {
+        console.error('Error saving manual enrollment:', error);
+        alert('There was an error submitting your enrollment. Please try again.');
+      }
+    });
+  }
 </script>
 </body>
 </html>
