@@ -10,8 +10,8 @@ const PRICING = {
         symbol: '₦'
     },
     USD: {
-        base: 38,
-        personalized: 13,
+        base: 30,
+        personalized: 10,
         symbol: '$'
     }
 };
