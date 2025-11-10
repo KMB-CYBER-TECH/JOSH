@@ -20,6 +20,7 @@ body {
     "Helvetica Neue", Arial;
   color: var(--black);
   background: var(--bg);
+  padding-top: 64px; /* Added for fixed header */
 } /* Layout */
 .container {
   width: min(1200px, 92%);
@@ -39,8 +40,10 @@ body {
   color: #e9edf3;
 } /* Header / Navbar */
 .site-header {
-  position: fi;
+  position: fixed; /* Fixed typo from 'fi' */
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 50;
   backdrop-filter: saturate(140%) blur(8px);
   background: rgba(255, 255, 255, 0.75);
@@ -98,13 +101,17 @@ body {
 .btn-lg {
   padding: 14px 20px;
   font-size: 1rem;
-} /* Mobile nav toggle */
+}
+
+/* Toggle Button */
 .nav-toggle {
   display: none;
   background: none;
   border: none;
   cursor: pointer;
+  z-index: 10001;
 }
+
 .nav-toggle .bar {
   display: block;
   width: 24px;
@@ -113,6 +120,8 @@ body {
   margin: 5px 0;
   transition: 0.3s;
 }
+
+/* Toggle Animation */
 .nav-toggle.open .bar:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
@@ -122,30 +131,89 @@ body {
 .nav-toggle.open .bar:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
+
+/* Mobile Menu */
 @media (max-width: 920px) {
   .nav-toggle {
     display: block;
   }
+
   .nav-links {
     position: fixed;
-    inset: 64px 0 auto 0;
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    transform: translateY(-120%);
-    transition: 0.35s ease;
-    padding: 16px 24px;
-    display: grid;
-    gap: 14px;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transform: translateY(-100%);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 10000;
+    margin: 0;
   }
+
   .nav-links.open {
     transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
   }
-} /* Hero */ /* ===== Hero Touch-ups ===== */
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+  }
+
+  .nav-links.open a {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger the animation for links */
+  .nav-links.open a:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  .nav-links.open a:nth-child(2) {
+    transition-delay: 0.15s;
+  }
+  .nav-links.open a:nth-child(3) {
+    transition-delay: 0.2s;
+  }
+  .nav-links.open a:nth-child(4) {
+    transition-delay: 0.25s;
+  }
+  .nav-links.open a:nth-child(5) {
+    transition-delay: 0.3s;
+  }
+  .nav-links.open a:nth-child(6) {
+    transition-delay: 0.35s;
+  }
+  .nav-links.open a:nth-child(7) {
+    transition-delay: 0.4s;
+  }
+}
+
+/* Hero */
 .hero {
   position: relative;
   color: #fff;
-  padding: 0; /* remove default padding */
-  min-height: 100vh; /* full screen height */
+  padding: 0;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -172,7 +240,9 @@ body {
 .get-started-btn:hover {
   background: var(--orange-600);
   transform: translateY(-2px);
-} /* Transformation Section Styles */
+}
+
+/* Transformation Section Styles */
 .transformation-section {
   padding: 80px 20px;
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
@@ -206,7 +276,9 @@ body {
 }
 .container.narrow {
   max-width: 800px;
-} /* Hero Box Styling */
+}
+
+/* Hero Box Styling */
 .hero-box {
   background: linear-gradient(
     135deg,
@@ -225,7 +297,9 @@ body {
   transform: translateY(-4px);
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5),
     0 0 0 1px rgba(255, 255, 255, 0.08) inset;
-} /* Title Styling */
+}
+
+/* Title Styling */
 .box-title {
   font-size: 2.5rem;
   font-weight: 800;
@@ -236,7 +310,9 @@ body {
   margin-bottom: 32px;
   letter-spacing: -0.02em;
   line-height: 1.2;
-} /* List Styling */
+}
+
+/* List Styling */
 .box-list {
   list-style: none;
   padding: 0;
@@ -280,7 +356,9 @@ body {
 .box-list li:hover::before {
   transform: translateY(-50%) scale(1.1);
   box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5);
-} /* After Line Styling */ /* ===================== SLIDER ANIMATION ===================== */
+}
+
+/* After Line Styling */
 .after-line-container {
   position: relative;
   overflow: hidden;
@@ -360,7 +438,9 @@ body {
   background: #ef4444;
   transform: translateY(-50%) rotate(-5deg);
   box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
-} /* Reveal Animation */
+}
+
+/* Reveal Animation */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -371,7 +451,9 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
-} /* Responsive Design */
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .transformation-section {
     padding: 60px 16px;
@@ -409,7 +491,9 @@ body {
     font-size: 1rem;
     padding: 16px 20px;
   }
-} /* Center countdown timer */
+}
+
+/* Center countdown timer */
 .countdown {
   display: flex;
   justify-content: center;
@@ -561,7 +645,9 @@ body {
 .strike {
   text-decoration: none;
   color: #ffb08a;
-} /* Sections */
+}
+
+/* Sections */
 .section-title {
   font-size: clamp(1.5rem, 2.2vw, 2.2rem);
   margin: 0 0 24px;
@@ -619,7 +705,9 @@ body {
   color: #6b7280;
   font-style: normal;
   font-weight: 600;
-} /* FAQ */
+}
+
+/* FAQ */
 .faq-grid {
   display: grid;
   gap: 14px;
@@ -647,7 +735,9 @@ body {
 .faq-item p {
   margin: 10px 0 0;
   color: #444;
-} /* Pricing */
+}
+
+/* Pricing */
 .badge {
   display: inline-block;
   padding: 6px 12px;
@@ -669,7 +759,9 @@ body {
 .muted {
   color: #c9cdd4;
   text-align: center;
-} /* Footer */
+}
+
+/* Footer */
 .site-footer {
   background: #0f1012;
   color: #b6bcc6;
@@ -690,7 +782,9 @@ body {
 .footer-inner a.to-top:hover {
   color: #fff;
   border-color: #3a404a;
-} /* Animations: reveal on scroll */
+}
+
+/* Animations: reveal on scroll */
 .reveal {
   opacity: 0;
   transform: translateY(18px);
@@ -705,7 +799,9 @@ body {
 .reveal.in {
   opacity: 1;
   transform: translateY(0);
-} /* Collaboration section */
+}
+
+/* Collaboration section */
 .collab {
   text-align: center;
   margin-bottom: 1rem;
@@ -714,16 +810,18 @@ body {
   font-size: 0.95rem;
   font-weight: 500;
   margin-bottom: 0.5rem;
-  color: var(--light); /* or black depending on background */
+  color: var(--light);
 }
 .collab-logo {
   max-width: 120px;
   height: auto;
   display: inline-block;
-} /* ================================ PRICING SECTION ================================ */
+}
+
+/* ================================ PRICING SECTION ================================ */
 #pricing .btn {
   display: block;
-  margin: 20px auto; /* centers horizontally */
+  margin: 20px auto;
   text-align: center;
 }
 .pricing-grid {
@@ -786,7 +884,9 @@ body {
 }
 .new-price {
   font-size: 2.05rem;
-} /* ================================ ENROLL CALL TO ACTION ================================ */
+}
+
+/* ================================ ENROLL CALL TO ACTION ================================ */
 .after-line {
   color: #f5f6f8;
   font-weight: 700;
@@ -794,7 +894,7 @@ body {
   overflow: hidden;
   white-space: nowrap;
   display: block;
-  width: 100%; /* full width */
+  width: 100%;
   position: relative;
 }
 .after-line {
@@ -834,7 +934,7 @@ body {
 }
 .after-line span {
   display: inline-block;
-  padding-left: 100%; /* start off-screen */
+  padding-left: 100%;
   animation: slideLoop 10s linear infinite;
 }
 @keyframes slideLoop {
@@ -867,7 +967,9 @@ body {
 }
 .enroll-btn:hover {
   background: var(--orange-600);
-} /* ================================ ENROLLMENT POPUP MODAL ================================ */
+}
+
+/* ================================ ENROLLMENT POPUP MODAL ================================ */
 .modal {
   display: none;
   position: fixed;
@@ -980,7 +1082,9 @@ body {
     opacity: 1;
     transform: scale(1);
   }
-} /* ================================ PAYMENT SECTIONS ================================ */
+}
+
+/* ================================ PAYMENT SECTIONS ================================ */
 #paystackSection,
 #manualPaymentSection {
   margin-top: 16px;
@@ -999,7 +1103,9 @@ body {
 }
 #submitManual:hover {
   background: #5a6268;
-} /* ================================ RESPONSIVE DESIGN ================================ */
+}
+
+/* ================================ RESPONSIVE DESIGN ================================ */
 @media (max-width: 768px) {
   .pricing-grid {
     grid-template-columns: 1fr;
@@ -1016,7 +1122,9 @@ body {
   .collab {
     margin-bottom: 1rem;
   }
-} /* ================================ EXTRA COST OPTIONS ================================ */
+}
+
+/* ================================ EXTRA COST OPTIONS ================================ */
 .extra-option {
   margin: 16px 0;
   padding: 16px;
@@ -1056,7 +1164,9 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-} /* Payment Summary */
+}
+
+/* Payment Summary */
 .payment-summary {
   background: #f8f9fa;
   padding: 16px;
@@ -1084,7 +1194,9 @@ body {
   font-weight: 700;
   color: var(--black);
   font-size: 1.1rem;
-} /* Payment Sections */
+}
+
+/* Payment Sections */
 #paystackSection,
 #manualPaymentSection {
   margin-top: 16px;
@@ -1103,11 +1215,15 @@ body {
 }
 #submitManual:hover {
   background: #5a6268;
-} /* Currency formatting */
+}
+
+/* Currency formatting */
 .currency {
   font-weight: 700;
   color: var(--orange);
-} /* Responsive adjustments */
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .extra-option {
     padding: 12px;
