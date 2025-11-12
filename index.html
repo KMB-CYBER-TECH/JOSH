@@ -12,6 +12,18 @@
     />
 
     <script src="https://js.paystack.co/v1/inline.js"></script>
+    <style>
+      /* Active navigation styling */
+      .nav-links a.active {
+        color: #ff6b35 !important;
+        font-weight: 600;
+      }
+      
+      .nav-links a.btn.active {
+        background-color: #ff6b35 !important;
+        color: white !important;
+      }
+    </style>
   </head>
   <body>
   
@@ -30,13 +42,13 @@
         </button>
 
         <ul class="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#commitment">Commitment</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#pricing" class="btn btn-sm">Pricing</a></li>
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About Us</a></li>
+          <li><a href="#commitment" class="nav-link">Commitment</a></li>
+          <li><a href="#features" class="nav-link">Features</a></li>
+          <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li><a href="#pricing" class=" nav-link">Pricing</a></li>
         </ul>
       </nav>
     </header>
@@ -72,14 +84,14 @@
       We help working class individuals with busy schedules achieve their weight
       loss and fitness goals through our tried and tested approach to health and
       fitness... <strong>LOSE IT!!!</strong> is built around your lifestyle—so
-      you can keep living while you’re transforming. With flexible nutrition,
+      you can keep living while you're transforming. With flexible nutrition,
       scalable workouts, and mindset support, you get results that last beyond
       the 12 weeks.
     </p>
   </div>
 </section>
 
-    <!-- COMMITMENT --> <section id="commitment" class="section section-dark"> <div class="container narrow"> <div class="countdown-title">Enroll now; <br>Starts 1st November, 2025.</div><br> <div id="countdown" class="countdown"></div> </div> </div> </section>
+    <!-- COMMITMENT --> <section id="commitment" class="section section-dark"> <div class="container narrow"> <div class="countdown-title">Enroll now; <br>Starts 29th November, 2025.</div><br> <div id="countdown" class="countdown"></div> </div> </div> </section>
 <!-- FEATURES / PROGRAM BREAKDOWN --> <section id="features" class="section"> <div class="container"> <h2 class="section-title reveal"> What You'll Get — Program Breakdown </h2> <div class="cards grid-3"> <div class="card reveal"> <h3>Progress Tracking</h3> <p>Simple Bi-Weekly check-ins and wins.</p> </div> <div class="card reveal delay-1"> <h3>Nutrition Guidelines</h3> <p>Tailored to your preferences.</p> </div> <div class="card reveal delay-2"> <h3>Mindset Tips</h3> <p>Weekly coaching prompts to stay on track.</p> </div> <div class="card reveal"> <h3>Demo Videos</h3> <p>Every exercise clearly explained.</p> </div> <div class="card reveal delay-1"> <h3>Bi-Weekly Plans</h3> <p>5x/week max — scalable to your level.</p> </div> <div class="card reveal delay-2"> <h3>Community Support</h3> <p>Motivation and accountability.</p> </div> </div> </div> </section>
 
     <!-- TESTIMONIALS -->
@@ -229,6 +241,8 @@ No subscriptions. No hidden fees. Just lasting results...
           id="weight"
           placeholder="Current Weight"
           required
+          min="1"
+          step="0.1"
         />
         <select name="weightUnit" id="weightUnit" required>
           <option value="kg">kg</option>
@@ -244,6 +258,8 @@ No subscriptions. No hidden fees. Just lasting results...
           id="goal"
           placeholder="Goal Weight"
           required
+          min="1"
+          step="0.1"
         />
         <select name="goalUnit" id="goalUnit" required>
           <option value="kg">kg</option>
@@ -258,34 +274,33 @@ No subscriptions. No hidden fees. Just lasting results...
           </select>
 
           <!-- Personalized Workout Plan Option -->
-          <!-- Personalized Workout Plan Option -->
-<div class="extra-option">
-  <label class="checkbox-label">
-    <input
-      type="checkbox"
-      name="personalized_plan"
-      id="personalizedPlan"
-      value="yes"
-      required
-    />
-    <span class="checkmark"></span>
-    <strong>Add Personalized Workout Plan (+$10 per month) <span style="color:red">*</span></strong>
-  </label>
-  <div id="personalizedOptions" style="display: none; margin-top: 10px">
-    <select name="personalized_months" id="personalizedMonths" required>
-      <option value="">NILL</option>
-      <option value="1">1 Month ($10)</option>
-      <option value="2">2 Months ($20)</option>
-      <option value="3">3 Months ($30)</option>
-    </select>
-  </div>
-</div>
+          <div class="extra-option">
+            <label class="checkbox-label">
+              <input
+                type="checkbox"
+                name="personalized_plan"
+                id="personalizedPlan"
+                value="yes"
+              />
+              <span class="checkmark"></span>
+              <strong>Add Personalized Workout Plan (+$10 per month) <span style="color:red">*</span></strong>
+            </label>
+            <div id="personalizedOptions" style="display: none; margin-top: 10px">
+              <select name="personalized_months" id="personalizedMonths">
+                <option value="">NILL</option>
+                <option value="1">1 Month ($10)</option>
+                <option value="2">2 Months ($20)</option>
+                <option value="3">3 Months ($30)</option>
+              </select>
+              <small style="color: #666; display: block; margin-top: 5px;">Select NILL if you don't want personalized plan</small>
+            </div>
+          </div>
 
           <!-- Currency Selection -->
           <select name="currency" id="currencySelect" required>
-            <option value="">PAY</option>
-            <option value="NGN"> Recommended for Nigeria</option>
-            <option value="USD"> International</option>
+            <option value="">Select Payment Method</option>
+            <option value="NGN">Recommended for Nigeria</option>
+          
             <option value="manual">ERROR (Contact Us)</option>
           </select>
 
@@ -371,38 +386,78 @@ No subscriptions. No hidden fees. Just lasting results...
       </div>
     </footer>
 
-    <script src="payment.js"></script>
     <script>
       // ===== Mobile nav toggle =====
       const navToggle = document.querySelector(".nav-toggle");
       const navLinks = document.querySelector(".nav-links");
+      const body = document.body;
+
       if (navToggle && navLinks) {
         navToggle.addEventListener("click", () => {
-          navLinks.classList.toggle("open");
+          const isOpen = navLinks.classList.toggle("open");
           navToggle.classList.toggle("open");
+          
+          // Prevent body scroll when menu is open
+          if (isOpen) {
+            body.style.overflow = 'hidden';
+          } else {
+            body.style.overflow = '';
+          }
         });
 
         document.querySelectorAll(".nav-links a").forEach((a) => {
           a.addEventListener("click", () => {
             navLinks.classList.remove("open");
             navToggle.classList.remove("open");
+            body.style.overflow = ''; // Restore scroll
           });
         });
       }
 
-      // Smooth scrolling
+      // ===== Active Navigation Highlighting =====
+      function setActiveNav() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        let currentSection = '';
+        const scrollPos = window.scrollY + 100;
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          
+          if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+            currentSection = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+
+      // Set active nav on scroll and load
+      window.addEventListener('scroll', setActiveNav);
+      window.addEventListener('load', setActiveNav);
+
+      // Smooth scrolling with active nav update
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           const target = document.querySelector(this.getAttribute("href"));
           if (!target) return;
           e.preventDefault();
           target.scrollIntoView({ behavior: "smooth", block: "start" });
+          
+          // Update active nav after scroll
+          setTimeout(setActiveNav, 100);
         });
       });
 
       // ===== Countdown timer =====
-     const targetDate = new Date("November 29, 2025 23:59:59").getTime();
-
+      const targetDate = new Date("November 29, 2025 23:59:59").getTime();
 
       function runCountdown(id) {
         const el = document.getElementById(id);
@@ -424,11 +479,11 @@ No subscriptions. No hidden fees. Just lasting results...
           const s = Math.floor((dist % (1000 * 60)) / 1000);
 
           el.innerHTML = `
-        <span class="cd">${d}<small>d</small></span>
-        <span class="cd">${h}<small>h</small></span>
-        <span class="cd">${m}<small>m</small></span>
-        <span class="cd">${s}<small>s</small></span>
-      `;
+            <span class="cd">${d}<small>d</small></span>
+            <span class="cd">${h}<small>h</small></span>
+            <span class="cd">${m}<small>m</small></span>
+            <span class="cd">${s}<small>s</small></span>
+          `;
         }
         tick();
         setInterval(tick, 1000);
@@ -462,6 +517,122 @@ No subscriptions. No hidden fees. Just lasting results...
         yearElement.textContent = new Date().getFullYear();
       }
 
+      // ===== Enhanced Phone Number Validation =====
+      function validatePhoneNumber(phone) {
+        // Remove all non-digit characters except + (for international numbers)
+        const cleanPhone = phone.replace(/[^\d+]/g, '');
+        
+        // Check if it starts with + (international) or is local
+        if (cleanPhone.startsWith('+')) {
+          // International number: + followed by 10-15 digits
+          const digitsOnly = cleanPhone.substring(1);
+          if (digitsOnly.length < 10 || digitsOnly.length > 15) {
+            return { isValid: false, message: "International number should be 10-15 digits after +" };
+          }
+          if (!/^\d+$/.test(digitsOnly)) {
+            return { isValid: false, message: "Invalid international number format" };
+          }
+        } else {
+          // Local number: 10-11 digits
+          if (cleanPhone.length < 10 || cleanPhone.length > 11) {
+            return { isValid: false, message: "Phone number should be 10-11 digits" };
+          }
+          if (!/^\d+$/.test(cleanPhone)) {
+            return { isValid: false, message: "Invalid phone number format" };
+          }
+        }
+        
+        return { isValid: true, message: "Valid phone number" };
+      }
+
+      // ===== Enhanced Email Validation =====
+      function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          return { isValid: false, message: "Please enter a valid email address" };
+        }
+        
+        // Additional check for common email providers
+        const commonDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com'];
+        const domain = email.split('@')[1];
+        if (!commonDomains.includes(domain.toLowerCase())) {
+          // Still valid but warn about uncommon domains
+          console.log("Uncommon email domain:", domain);
+        }
+        
+        return { isValid: true, message: "Valid email address" };
+      }
+
+      // ===== Enhanced Form Validation Functions =====
+      function validateAllFields() {
+        const name = document.getElementById("enrollForm").name.value.trim();
+        const email = document.getElementById("enrollForm").email.value.trim();
+        const phone = document.getElementById("enrollForm").phone.value.trim();
+        const currentWeight = document.getElementById("weight").value;
+        const goalWeight = document.getElementById("goal").value;
+        const currentUnit = document.getElementById("weightUnit").value;
+        const goalUnit = document.getElementById("goalUnit").value;
+        const plan = document.getElementById("enrollForm").plan.value;
+        const currency = document.getElementById("currencySelect").value;
+        const personalizedPlan = document.getElementById("personalizedPlan").checked;
+        const personalizedMonths = document.getElementById("personalizedMonths").value;
+
+        // Check required fields
+        if (!name || !email || !phone || !currentWeight || !goalWeight || !plan || !currency) {
+          return { isValid: false, message: "Please fill in all required fields" };
+        }
+
+        // Validate email
+        const emailValidation = validateEmail(email);
+        if (!emailValidation.isValid) {
+          return { isValid: false, message: emailValidation.message };
+        }
+
+        // Validate phone number
+        const phoneValidation = validatePhoneNumber(phone);
+        if (!phoneValidation.isValid) {
+          return { isValid: false, message: phoneValidation.message };
+        }
+
+        // Validate weights are numbers
+        if (isNaN(currentWeight) || isNaN(goalWeight)) {
+          return { isValid: false, message: "Weight must be a valid number" };
+        }
+
+        // Validate weights are positive
+        if (parseFloat(currentWeight) <= 0 || parseFloat(goalWeight) <= 0) {
+          return { isValid: false, message: "Weight must be greater than 0" };
+        }
+
+        // Convert weights to common unit for comparison
+        let currentWeightKg = parseFloat(currentWeight);
+        let goalWeightKg = parseFloat(goalWeight);
+
+        if (currentUnit === 'lbs') {
+          currentWeightKg = currentWeightKg * 0.453592;
+        }
+        if (goalUnit === 'lbs') {
+          goalWeightKg = goalWeightKg * 0.453592;
+        }
+
+        // Validate goal weight is less than current weight
+        if (goalWeightKg >= currentWeightKg) {
+          return { isValid: false, message: "Goal weight must be less than current weight" };
+        }
+
+        // FIXED: Allow proceeding even if NILL is selected for personalized plan
+        // Only validate if personalized plan is checked AND user selected a duration
+        if (personalizedPlan && personalizedMonths && personalizedMonths !== "" && personalizedMonths !== "NILL") {
+          // If they selected a duration (not NILL), validate it's a valid number
+          const months = parseInt(personalizedMonths);
+          if (isNaN(months) || months < 1) {
+            return { isValid: false, message: "Please select a valid duration for personalized workout plan" };
+          }
+        }
+
+        return { isValid: true, message: "All fields are valid" };
+      }
+
       // ===== Modal (Enroll Now) =====
       const modal = document.getElementById("enrollModal");
       const openBtn = document.getElementById("enrollBtn");
@@ -470,15 +641,105 @@ No subscriptions. No hidden fees. Just lasting results...
       const successMessage = document.getElementById("successMessage");
       const paymentMethod = document.getElementById("currencySelect");
       const paystackSection = document.getElementById("paystackSection");
-      const manualPaymentSection = document.getElementById(
-        "manualPaymentSection"
-      );
+      const manualPaymentSection = document.getElementById("manualPaymentSection");
       const personalizedPlan = document.getElementById("personalizedPlan");
-      const personalizedOptions = document.getElementById(
-        "personalizedOptions"
-      );
+      const personalizedOptions = document.getElementById("personalizedOptions");
       const personalizedMonths = document.getElementById("personalizedMonths");
       const paymentSummary = document.getElementById("paymentSummary");
+
+      // Helper functions for showing errors
+      function showFieldError(field, message) {
+        // Remove any existing error message
+        clearFieldError(field);
+        
+        // Create error message element
+        const errorElement = document.createElement('div');
+        errorElement.className = 'field-error';
+        errorElement.style.color = '#ef4444';
+        errorElement.style.fontSize = '0.8rem';
+        errorElement.style.marginTop = '4px';
+        errorElement.textContent = message;
+        
+        // Insert after the field
+        field.parentNode.insertBefore(errorElement, field.nextSibling);
+      }
+
+      function clearFieldError(field) {
+        const existingError = field.parentNode.querySelector('.field-error');
+        if (existingError) {
+          existingError.remove();
+        }
+      }
+
+      // Real-time validation for email
+      const emailInput = document.getElementById("enrollForm").email;
+      if (emailInput) {
+        emailInput.addEventListener("blur", function() {
+          const emailValue = this.value.trim();
+          if (emailValue) {
+            const validation = validateEmail(emailValue);
+            if (!validation.isValid) {
+              this.style.borderColor = "#ef4444";
+              showFieldError(this, validation.message);
+            } else {
+              this.style.borderColor = "#22c55e";
+              clearFieldError(this);
+            }
+          }
+        });
+      }
+
+      // Real-time validation for phone number
+      const phoneInput = document.getElementById("enrollForm").phone;
+      if (phoneInput) {
+        phoneInput.addEventListener("blur", function() {
+          const phoneValue = this.value.trim();
+          if (phoneValue) {
+            const validation = validatePhoneNumber(phoneValue);
+            if (!validation.isValid) {
+              this.style.borderColor = "#ef4444";
+              showFieldError(this, validation.message);
+            } else {
+              this.style.borderColor = "#22c55e";
+              clearFieldError(this);
+            }
+          }
+        });
+      }
+
+      // Real-time validation for weight comparison
+      function validateWeights() {
+        const currentWeight = document.getElementById("weight").value;
+        const goalWeight = document.getElementById("goal").value;
+        const currentUnit = document.getElementById("weightUnit").value;
+        const goalUnit = document.getElementById("goalUnit").value;
+
+        if (currentWeight && goalWeight && !isNaN(currentWeight) && !isNaN(goalWeight)) {
+          let currentWeightKg = parseFloat(currentWeight);
+          let goalWeightKg = parseFloat(goalWeight);
+
+          if (currentUnit === 'lbs') currentWeightKg *= 0.453592;
+          if (goalUnit === 'lbs') goalWeightKg *= 0.453592;
+
+          const goalInput = document.getElementById("goal");
+          if (goalWeightKg >= currentWeightKg) {
+            goalInput.style.borderColor = "#ef4444";
+            showFieldError(goalInput, "Goal weight must be less than current weight");
+            return false;
+          } else {
+            goalInput.style.borderColor = "#22c55e";
+            clearFieldError(goalInput);
+            return true;
+          }
+        }
+        return true;
+      }
+
+      // Add event listeners for weight validation
+      document.getElementById("weight").addEventListener("blur", validateWeights);
+      document.getElementById("goal").addEventListener("blur", validateWeights);
+      document.getElementById("weightUnit").addEventListener("change", validateWeights);
+      document.getElementById("goalUnit").addEventListener("change", validateWeights);
 
       // Personalized plan toggle
       if (personalizedPlan) {
@@ -492,57 +753,76 @@ No subscriptions. No hidden fees. Just lasting results...
 
       // Months selection change
       if (personalizedMonths) {
-        personalizedMonths.addEventListener("change", updatePaymentSummary);
-      }
-
-      // Currency selection handler
-      if (paymentMethod) {
-        paymentMethod.addEventListener("change", function () {
-          const currency = this.value;
-          if (paystackSection) {
-            paystackSection.style.display =
-              currency === "NGN" || currency === "USD" ? "block" : "none";
-          }
-          if (manualPaymentSection) {
-            manualPaymentSection.style.display =
-              currency === "manual" ? "block" : "none";
-          }
-          if (paymentSummary) {
-            paymentSummary.style.display = currency ? "block" : "none";
-          }
+        personalizedMonths.addEventListener("change", function() {
           updatePaymentSummary();
         });
       }
 
-      // Update payment summary
+      // Currency selection handler - FIXED
+      if (paymentMethod) {
+        paymentMethod.addEventListener("change", function () {
+          const currency = this.value;
+          
+          // Reset payment sections
+          if (paystackSection) {
+            paystackSection.style.display = "none";
+          }
+          if (manualPaymentSection) {
+            manualPaymentSection.style.display = "none";
+          }
+          if (paymentSummary) {
+            paymentSummary.style.display = "none";
+          }
+          
+          // Show appropriate sections based on selection
+          if (currency === "NGN" || currency === "USD") {
+            if (paystackSection) paystackSection.style.display = "block";
+            if (paymentSummary) paymentSummary.style.display = "block";
+          } else if (currency === "manual") {
+            if (manualPaymentSection) manualPaymentSection.style.display = "block";
+            if (paymentSummary) paymentSummary.style.display = "block";
+          }
+          
+          updatePaymentSummary();
+        });
+      }
+
+      // Update payment summary - FIXED currency switching
       function updatePaymentSummary() {
         const currencySelect = document.getElementById("currencySelect");
         if (!currencySelect) return;
 
         const currency = currencySelect.value;
-        const baseAmount = currency === "USD" ? 30 : 45000;
-        const personalizedRate = currency === "USD" ? 10 : 15000;
-        const symbol = currency === "USD" ? "$" : "₦";
+        
+        // Set correct base amounts and rates
+        let baseAmount, personalizedRate;
+        
+        if (currency === "USD") {
+          baseAmount = 30;
+          personalizedRate = 10;
+        } else {
+          // For both NGN and manual error option, use Naira pricing
+          baseAmount = 45000;
+          personalizedRate = 15000;
+        }
 
         let personalizedAmount = 0;
 
-      if (personalizedPlan && personalizedPlan.checked) {
-  const monthsValue = personalizedMonths ? personalizedMonths.value : "";
-  
-  // Treat "NILL" or empty as 0 months
-  if (monthsValue === "" || monthsValue.toLowerCase() === "nill") {
-    personalizedAmount = 0;
-  } else {
-    const months = parseInt(monthsValue);
-    personalizedAmount = isNaN(months) ? 0 : months * personalizedRate;
-  }
-}
+        if (personalizedPlan && personalizedPlan.checked) {
+          const monthsValue = personalizedMonths ? personalizedMonths.value : "";
+          
+          // FIXED: Only charge if they selected a valid duration (not empty or "NILL")
+          if (monthsValue && monthsValue !== "" && monthsValue !== "NILL") {
+            const months = parseInt(monthsValue);
+            personalizedAmount = isNaN(months) ? 0 : months * personalizedRate;
+          }
+        }
 
         const totalAmount = baseAmount + personalizedAmount;
 
         // Format amount display
         const formatAmount = (amount, curr) => {
-          if (curr === "NGN") {
+          if (curr === "NGN" || curr === "manual") {
             return `₦${amount.toLocaleString()}`;
           } else {
             return `$${amount}`;
@@ -551,89 +831,216 @@ No subscriptions. No hidden fees. Just lasting results...
 
         // Update summary display
         if (document.getElementById("personalizedSummary")) {
-          document.getElementById("personalizedSummary").style.display =
-            personalizedPlan && personalizedPlan.checked ? "flex" : "none";
+          const shouldShowPersonalized = personalizedPlan && personalizedPlan.checked && personalizedAmount > 0;
+          document.getElementById("personalizedSummary").style.display = shouldShowPersonalized ? "flex" : "none";
         }
         if (document.getElementById("personalizedAmount")) {
-          document.getElementById("personalizedAmount").textContent =
-            formatAmount(personalizedAmount, currency);
+          document.getElementById("personalizedAmount").textContent = formatAmount(personalizedAmount, currency);
         }
         if (document.getElementById("baseAmountDisplay")) {
-          document.getElementById("baseAmountDisplay").textContent =
-            formatAmount(baseAmount, currency);
+          document.getElementById("baseAmountDisplay").textContent = formatAmount(baseAmount, currency);
         }
         if (document.getElementById("totalAmount")) {
-          document.getElementById("totalAmount").textContent = formatAmount(
-            totalAmount,
-            currency
-          );
+          document.getElementById("totalAmount").textContent = formatAmount(totalAmount, currency);
         }
         if (document.getElementById("paystackAmount")) {
-          document.getElementById("paystackAmount").textContent = formatAmount(
-            totalAmount,
-            currency
-          );
+          document.getElementById("paystackAmount").textContent = formatAmount(totalAmount, currency);
         }
       }
 
-      // Reset success message each time modal opens
-      if (openBtn && modal) {
-        openBtn.onclick = () => {
-          if (successMessage) successMessage.style.display = "none";
-          modal.style.display = "flex";
-          if (form) form.reset();
-          if (paystackSection) paystackSection.style.display = "none";
-          if (manualPaymentSection) manualPaymentSection.style.display = "none";
-          if (paymentSummary) paymentSummary.style.display = "none";
-          if (personalizedOptions) personalizedOptions.style.display = "none";
-          if (personalizedPlan) personalizedPlan.checked = false;
-        };
+      // ===== PAYSTACK PAYMENT INTEGRATION =====
+      const payWithPaystackBtn = document.getElementById("payWithPaystack");
+      if (payWithPaystackBtn) {
+        payWithPaystackBtn.addEventListener("click", function(e) {
+          e.preventDefault();
+          
+          const validation = validateAllFields();
+          if (!validation.isValid) {
+            alert(validation.message);
+            return;
+          }
+
+          // Get form data
+          const name = form.name.value.trim();
+          const email = form.email.value.trim();
+          const phone = form.phone.value.trim();
+          const currency = document.getElementById("currencySelect").value;
+          
+          // Calculate amounts - FIXED: Use correct pricing based on currency
+          let baseAmount, personalizedRate;
+          
+          if (currency === "USD") {
+            baseAmount = 30;
+            personalizedRate = 10;
+          } else {
+            baseAmount = 45000;
+            personalizedRate = 15000;
+          }
+          
+          let personalizedAmount = 0;
+          let personalizedMonthsValue = 0;
+
+          if (personalizedPlan && personalizedPlan.checked) {
+            const monthsValue = personalizedMonths.value;
+            if (monthsValue && monthsValue !== "" && monthsValue !== "NILL") {
+              personalizedMonthsValue = parseInt(monthsValue);
+              personalizedAmount = personalizedMonthsValue * personalizedRate;
+            }
+          }
+
+          const totalAmount = baseAmount + personalizedAmount;
+          
+          // FIXED: Convert to smallest currency unit for Paystack
+          const amountInSmallestUnit = totalAmount * 100;
+          // For NGN: ₦45,000 → 45,000 * 100 = 4,500,000 kobo (correct!)
+          // For USD: $30 → 30 * 100 = 3000 cents (correct!)
+
+          // Prepare payment data
+          const paymentData = {
+            key: 'pk_live_ab74bff902b672e6e983b08fe3da6c3042baa2ca',
+            email: email,
+            amount: amountInSmallestUnit, // FIXED: Now using correct amount
+            currency: currency,
+            ref: 'LOSEIT_' + Math.floor((Math.random() * 1000000000) + 1),
+            metadata: {
+              custom_fields: [
+                {
+                  display_name: "Full Name",
+                  variable_name: "full_name",
+                  value: name
+                },
+                {
+                  display_name: "Phone Number",
+                  variable_name: "phone_number",
+                  value: phone
+                },
+                {
+                  display_name: "Program",
+                  variable_name: "program",
+                  value: "LOSE IT 12-Week Weight Loss"
+                },
+                {
+                  display_name: "Personalized Plan",
+                  variable_name: "personalized_plan",
+                  value: personalizedPlan.checked ? "Yes" : "No"
+                },
+                {
+                  display_name: "Personalized Months",
+                  variable_name: "personalized_months",
+                  value: personalizedMonthsValue.toString()
+                }
+              ]
+            },
+            callback: function(response) {
+              // Payment successful
+              console.log("Payment successful:", response);
+              
+              // Save enrollment data
+              const enrollmentData = {
+                name: name,
+                email: email,
+                phone: phone,
+                weight: form.weight.value,
+                goal: form.goal.value,
+                plan: form.plan.value,
+                personalized_plan: personalizedPlan.checked ? "yes" : "no",
+                personalized_months: personalizedMonthsValue.toString(),
+                base_amount: baseAmount,
+                personalized_amount: personalizedAmount,
+                total_amount: totalAmount,
+                currency: currency,
+                payment_method: "paystack",
+                payment_status: "completed",
+                payment_reference: response.reference,
+                submittedAt: new Date().toISOString(),
+                program: "LOSE IT 12-Week Weight Loss",
+              };
+
+              try {
+                const enrollments = JSON.parse(localStorage.getItem("enrollments")) || [];
+                enrollments.push(enrollmentData);
+                localStorage.setItem("enrollments", JSON.stringify(enrollments));
+
+                // Show success modal
+                const successModal = document.getElementById("paymentSuccessModal");
+                const successDetails = document.getElementById("successDetails");
+                
+                if (successDetails) {
+                  successDetails.innerHTML = `
+                    <strong>Payment Details:</strong><br>
+                    Amount: ${currency === "NGN" ? '₦' : '$'}${totalAmount}<br>
+                    Reference: ${response.reference}<br>
+                    Program: LOSE IT 12-Week Weight Loss
+                  `;
+                }
+                
+                if (successModal) {
+                  successModal.style.display = "flex";
+                }
+                
+                // Close enrollment modal
+                if (modal) {
+                  modal.style.display = "none";
+                }
+                
+                // Reset form
+                if (form) form.reset();
+                if (personalizedOptions) personalizedOptions.style.display = "none";
+                if (personalizedPlan) personalizedPlan.checked = false;
+                
+              } catch (error) {
+                console.error("Error saving enrollment:", error);
+                alert("Payment successful but there was an error saving your enrollment details. Please contact support.");
+              }
+            },
+            onClose: function() {
+              // Payment modal closed
+              console.log("Payment modal closed");
+              alert("Payment was not completed. Please try again.");
+            }
+          };
+
+          // Initialize Paystack payment
+          try {
+            const handler = PaystackPop.setup(paymentData);
+            handler.openIframe();
+          } catch (error) {
+            console.error("Paystack error:", error);
+            alert("Error initializing payment. Please try again or contact support.");
+          }
+        });
       }
 
-      // Close modal handlers
-      if (closeBtn && modal) {
-        closeBtn.onclick = () => (modal.style.display = "none");
-      }
-
-      if (modal) {
-        window.onclick = (e) => {
-          if (e.target === modal) modal.style.display = "none";
-        };
-      }
-
-      // Close success modal
-      const closeSuccessModal = document.getElementById("closeSuccessModal");
-      const paymentSuccessModal = document.getElementById(
-        "paymentSuccessModal"
-      );
-
-      if (closeSuccessModal && paymentSuccessModal) {
-        closeSuccessModal.onclick = () => {
-          paymentSuccessModal.style.display = "none";
-        };
-      }
-
-      // Manual payment submission
+      // Enhanced manual payment with validation
       const submitManual = document.getElementById("submitManual");
       if (submitManual) {
         submitManual.addEventListener("click", function (e) {
           e.preventDefault();
+
+          const validation = validateAllFields();
+          if (!validation.isValid) {
+            alert(validation.message);
+            return;
+          }
 
           if (!form) return;
 
           const name = form.name.value.trim();
           const email = form.email.value.trim();
           const phone = form.phone.value.trim();
-
-          if (!name || !email || !phone) {
-            alert("Please fill in all required fields.");
-            return;
-          }
-
-          // Calculate amounts
           const currency = document.getElementById("currencySelect").value;
-          const baseAmount = currency === "USD" ? 38 : 30000;
-          const personalizedRate = currency === "USD" ? 13 : 10000;
+
+          // Calculate amounts - FIXED: Use correct pricing
+          let baseAmount, personalizedRate;
+          
+          if (currency === "USD") {
+            baseAmount = 30;
+            personalizedRate = 10;
+          } else {
+            baseAmount = 45000;
+            personalizedRate = 15000;
+          }
+          
           let personalizedAmount = 0;
           let personalizedMonthsValue = 0;
 
@@ -696,22 +1103,57 @@ No subscriptions. No hidden fees. Just lasting results...
           }
         });
       }
-      // === "Get Started" button opens the enroll modal ===
-const getStartedBtn = document.getElementById("getStartedBtn");
-if (getStartedBtn && modal) {
-  getStartedBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    modal.style.display = "flex";
-    if (successMessage) successMessage.style.display = "none";
-    if (form) form.reset();
-    if (paystackSection) paystackSection.style.display = "none";
-    if (manualPaymentSection) manualPaymentSection.style.display = "none";
-    if (paymentSummary) paymentSummary.style.display = "none";
-    if (personalizedOptions) personalizedOptions.style.display = "none";
-    if (personalizedPlan) personalizedPlan.checked = false;
-  });
-}
 
+      // Reset success message each time modal opens
+      if (openBtn && modal) {
+        openBtn.onclick = () => {
+          if (successMessage) successMessage.style.display = "none";
+          modal.style.display = "flex";
+          if (form) form.reset();
+          if (paystackSection) paystackSection.style.display = "none";
+          if (manualPaymentSection) manualPaymentSection.style.display = "none";
+          if (paymentSummary) paymentSummary.style.display = "none";
+          if (personalizedOptions) personalizedOptions.style.display = "none";
+          if (personalizedPlan) personalizedPlan.checked = false;
+        };
+      }
+
+      // Close modal handlers
+      if (closeBtn && modal) {
+        closeBtn.onclick = () => (modal.style.display = "none");
+      }
+
+      if (modal) {
+        window.onclick = (e) => {
+          if (e.target === modal) modal.style.display = "none";
+        };
+      }
+
+      // Close success modal
+      const closeSuccessModal = document.getElementById("closeSuccessModal");
+      const paymentSuccessModal = document.getElementById("paymentSuccessModal");
+
+      if (closeSuccessModal && paymentSuccessModal) {
+        closeSuccessModal.onclick = () => {
+          paymentSuccessModal.style.display = "none";
+        };
+      }
+
+      // === "Get Started" button opens the enroll modal ===
+      const getStartedBtn = document.getElementById("getStartedBtn");
+      if (getStartedBtn && modal) {
+        getStartedBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          modal.style.display = "flex";
+          if (successMessage) successMessage.style.display = "none";
+          if (form) form.reset();
+          if (paystackSection) paystackSection.style.display = "none";
+          if (manualPaymentSection) manualPaymentSection.style.display = "none";
+          if (paymentSummary) paymentSummary.style.display = "none";
+          if (personalizedOptions) personalizedOptions.style.display = "none";
+          if (personalizedPlan) personalizedPlan.checked = false;
+        });
+      }
     </script>
   </body>
 </html>
