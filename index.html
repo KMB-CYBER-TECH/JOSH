@@ -895,13 +895,15 @@ No subscriptions. No hidden fees. Just lasting results...
           // For NGN: ₦45,000 → 45,000 * 100 = 4,500,000 kobo (correct!)
           // For USD: $30 → 30 * 100 = 3000 cents (correct!)
 
-          // Prepare payment data
+          // Prepare payment data - FIXED: Added multiple payment channels
           const paymentData = {
             key: 'pk_live_ab74bff902b672e6e983b08fe3da6c3042baa2ca',
             email: email,
-            amount: amountInSmallestUnit, // FIXED: Now using correct amount
+            amount: amountInSmallestUnit,
             currency: currency,
             ref: 'LOSEIT_' + Math.floor((Math.random() * 1000000000) + 1),
+            channels: ['card', 'bank', 'ussd', 'qr', 'mobile_money', 'bank_transfer'],
+            // This enables: Card, Bank Transfer, USSD, QR Code, Mobile Money
             metadata: {
               custom_fields: [
                 {
