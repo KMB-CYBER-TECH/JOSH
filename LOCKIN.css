@@ -1,6 +1,6 @@
 :root {
-  --orange: #ff7a00;
-  --orange-600: #e86d00;
+  --orange: rgb(128, 0, 0);
+  --orange-600: rgb(128, 0, 0);
   --black: #0f1113;
   --white: #ffffff;
   --muted: #8a8f98;
@@ -63,7 +63,7 @@ body {
   letter-spacing: 0.5px;
 }
 .brand-link span {
-  color: var(--orange);
+  color: rgb(128, 0, 0);
 }
 .nav-links {
   display: flex;
@@ -79,7 +79,7 @@ body {
   font-weight: 600;
 }
 .nav-links a:hover {
-  color: var(--orange);
+  color: rgb(128, 0, 0);
 }
 .btn {
   background: var(--orange);
@@ -92,7 +92,7 @@ body {
   transition: background 0.3s ease;
 }
 .btn:hover {
-  background: var(--orange-600);
+  background: rgb(128, 0, 0);
 }
 .btn-sm {
   padding: 8px 14px;
@@ -229,7 +229,7 @@ body {
   margin-top: 24px;
   font-size: 1.1rem;
   padding: 14px 28px;
-  background: var(--orange);
+  background: rgb(128, 0, 0);
   border-radius: 999px;
   color: #fff;
   text-decoration: none;
@@ -238,7 +238,7 @@ body {
   transition: background 0.3s ease, transform 0.3s ease;
 }
 .get-started-btn:hover {
-  background: var(--orange-600);
+  background: rgb(128, 0, 0);
   transform: translateY(-2px);
 }
 
@@ -588,7 +588,7 @@ body {
   gap: 10px;
   align-items: center;
   font-weight: 800;
-  color: var(--orange);
+  color: rgb(128, 0, 0);
 }
 .countdown.in-dark {
   justify-content: center;
