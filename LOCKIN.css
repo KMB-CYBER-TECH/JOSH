@@ -1,7 +1,7 @@
 :root {
-  --orange: rgb(128, 0, 0);
-  --orange-600: rgb(128, 0, 0);
-  --black: #0f1113;
+  --orange: #ff6b35;
+  --orange-600: #ff6b35;
+  --black: #000000;
   --white: #ffffff;
   --muted: #8a8f98;
   --card: #ffffff;
@@ -16,8 +16,15 @@ body {
 }
 body {
   margin: 0;
-  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
-    "Helvetica Neue", Arial;
+  font-family:
+    "Poppins",
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Ubuntu,
+    "Helvetica Neue",
+    Arial;
   color: var(--black);
   background: var(--bg);
   padding-top: 64px; /* Added for fixed header */
@@ -46,7 +53,7 @@ body {
   right: 0;
   z-index: 50;
   backdrop-filter: saturate(140%) blur(8px);
-  background: rgba(255, 255, 255, 0.75);
+  background: #000000;
   border-bottom: 1px solid #eee;
 }
 .navbar {
@@ -63,7 +70,7 @@ body {
   letter-spacing: 0.5px;
 }
 .brand-link span {
-  color: rgb(128, 0, 0);
+  color: #ff6b35;
 }
 .nav-links {
   display: flex;
@@ -74,12 +81,12 @@ body {
   padding: 0;
 }
 .nav-links a {
-  color: var(--black);
+  color: var(--white);
   text-decoration: none;
   font-weight: 600;
 }
 .nav-links a:hover {
-  color: rgb(128, 0, 0);
+  color: #ff6b35;
 }
 .btn {
   background: var(--orange);
@@ -92,7 +99,7 @@ body {
   transition: background 0.3s ease;
 }
 .btn:hover {
-  background: rgb(128, 0, 0);
+  background: #ff6b35;
 }
 .btn-sm {
   padding: 8px 14px;
@@ -116,7 +123,7 @@ body {
   display: block;
   width: 24px;
   height: 2px;
-  background: var(--black);
+  background: var(--white);
   margin: 5px 0;
   transition: 0.3s;
 }
@@ -147,7 +154,9 @@ body {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     transform: translateY(-100%);
-    transition: transform 0.4s ease, opacity 0.4s ease;
+    transition:
+      transform 0.4s ease,
+      opacity 0.4s ease;
     padding: 24px 28px;
     display: flex;
     flex-direction: column;
@@ -229,13 +238,15 @@ body {
   margin-top: 24px;
   font-size: 1.1rem;
   padding: 14px 28px;
-  background: rgb(128, 0, 0);
+  background: #ff6b35;
   border-radius: 999px;
   color: #fff;
   text-decoration: none;
   font-weight: 700;
   display: inline-block;
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 .get-started-btn:hover {
   background: rgb(128, 0, 0);
@@ -245,7 +256,7 @@ body {
 /* Transformation Section Styles */
 .transformation-section {
   padding: 80px 20px;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(135deg, #000000 0%, #1e293b 100%);
   position: relative;
   overflow: hidden;
 }
@@ -256,7 +267,8 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(
+  background:
+    radial-gradient(
       circle at 20% 50%,
       rgba(59, 130, 246, 0.1) 0%,
       transparent 50%
@@ -289,13 +301,17 @@ body {
   border: 1px solid rgba(148, 163, 184, 0.2);
   border-radius: 24px;
   padding: 48px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.4),
     0 0 0 1px rgba(255, 255, 255, 0.05) inset;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 .hero-box:hover {
   transform: translateY(-4px);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5),
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.5),
     0 0 0 1px rgba(255, 255, 255, 0.08) inset;
 }
 
@@ -588,7 +604,7 @@ body {
   gap: 10px;
   align-items: center;
   font-weight: 800;
-  color: rgb(128, 0, 0);
+  color: #ff6b35;
 }
 .countdown.in-dark {
   justify-content: center;
@@ -680,7 +696,9 @@ body {
   border-radius: 16px;
   padding: 22px;
   box-shadow: 0 8px 24px rgba(17, 17, 19, 0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease,
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
     border-color 0.25s ease;
 }
 .cards .card:hover {
@@ -719,7 +737,9 @@ body {
   border: 1px solid #e9ecf2;
   border-radius: 14px;
   padding: 14px 18px;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 .faq-item[open] {
   border-color: #dfe4ec;
@@ -763,7 +783,7 @@ body {
 
 /* Footer */
 .site-footer {
-  background: #0f1012;
+  background: #000000;
   color: #b6bcc6;
   padding: 18px 0;
 }
@@ -788,7 +808,9 @@ body {
 .reveal {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
 }
 .reveal.delay-1 {
   transition-delay: 0.12s;
@@ -813,7 +835,17 @@ body {
   color: var(--light);
 }
 .collab-logo {
-  max-width: 120px;
+  max-width: 100px;
+  height: auto;
+  display: inline-block;
+}
+.collabb-logo {
+  max-width: 140px;
+  height: auto;
+  display: inline-block;
+}
+.collabb-logoo {
+  max-width: 150px;
   height: auto;
   display: inline-block;
 }
@@ -841,7 +873,9 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 .pricing-card:hover {
   transform: translateY(-6px);
