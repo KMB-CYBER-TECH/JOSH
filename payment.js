@@ -5,12 +5,12 @@ const PAYSTACK_PUBLIC_KEY = 'pk_live_ab74bff902b672e6e983b08fe3da6c3042baa2ca';
 // Pricing configuration for NGN and USD
 const PRICING = {
     NGN: {
-        base: 45000,
+        base: 70000,
         personalized: 15000,
         symbol: '₦'
     },
     USD: {
-        base: 30,
+        base: 50,
         personalized: 10,
         symbol: '$'
     }
