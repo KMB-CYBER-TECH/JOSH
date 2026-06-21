@@ -6,7 +6,7 @@ const PAYSTACK_PUBLIC_KEY = 'pk_live_ab74bff902b672e6e983b08fe3da6c3042baa2ca';
 const PRICING = {
     NGN: {
         base: 140000,
-        personalized: 20000,
+        personalized: 21000,
         symbol: '₦'
     },
     USD: {
