@@ -583,7 +583,6 @@ body {
   display: block;
   font-family: "Playfair Display", serif !important;
 }
-
 .countdown-title {
   text-align: center;
   width: 100%;
@@ -617,7 +616,7 @@ body {
   align-items: center;
   justify-content: center;
   min-width: 56px;
-  padding: 20px 22px;
+  padding: 20px 22px; 
   background: #000000b0;
   border: 1px solid #ffffff22;
   border-radius: 10px;
@@ -627,7 +626,7 @@ body {
   font-weight: 700;
   opacity: 0.9;
   margin-left: 6px;
-  font-size: 1.75rem;
+  font-size: 1.75rem; 
 }
 .hero-box {
   background: #0f0f10cc;
